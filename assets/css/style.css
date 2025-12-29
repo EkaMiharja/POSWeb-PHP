@@ -1,0 +1,177 @@
+/* --- GRADIENT BACKGROUND --- */
+body {
+  background: linear-gradient(315deg, #6E8CFB 3%, #636CCB 38%, #50589C 68%, #3C467B 98%);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* --- WAVE BACKGROUND --- */
+.wave-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  z-index: 1; /* di belakang konten tapi di atas background */
+  pointer-events: none;
+}
+
+.wave {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 1000% 1000% 0 0;
+  position: fixed;
+  width: 200%;
+  height: 9em;
+  animation: wave 10s -3s linear infinite;
+  transform: translate3d(0, 0, 0);
+  opacity: 0.8;
+  bottom: 0;
+  left: 0;
+  
+}
+
+.wave:nth-of-type(2) {
+  bottom: -1.25em;
+  animation: wave 18s linear reverse infinite;
+  opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+  bottom: -2.5em;
+  animation: wave 20s -1s reverse infinite;
+  opacity: 0.9;
+}
+
+@keyframes wave {
+2% {
+    transform: translateX(1);
+  }
+
+  25% {
+    transform: translateX(-25%);
+  }
+
+  50% {
+    transform: translateX(-50%);
+  }
+
+  75% {
+    transform: translateX(-25%);
+  }
+
+  100% {
+    transform: translateX(1);
+  }
+}
+
+/* --- BAWA SEMUA KONTEN DI ATAS BACKGROUND --- */
+.wrapper,
+.content-wrapper,
+.main-sidebar {
+  position: relative;
+  z-index: 2;
+  background: transparent; /* penting biar background wave terlihat */
+}
+
+/* --- OPTIONAL: Hilangkan putih dari content --- */
+.content-wrapper {
+  background-color: transparent !important;
+  margin-left: 250px;
+  padding: 20px;
+  padding-bottom: 200px; /* beri ruang agar tidak “menggantung” */
+  background: transparent;
+}
+
+/* === GLASS SIDEBAR === */
+.main-sidebar {
+  background: rgba(40, 40, 40, 0.45) !important; /* warna gelap transparan */
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.1);
+
+}
+
+/* warna teks & ikon agar tetap kontras */
+.main-sidebar .nav-sidebar > .nav-item > .nav-link,
+.main-sidebar .brand-link {
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* saat aktif */
+.main-sidebar .nav-sidebar > .nav-item > .nav-link.active {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  border-radius: 8px;
+}
+
+/* hover efek lembut */
+.main-sidebar .nav-sidebar > .nav-item > .nav-link:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+
+    /* --- Responsive Sidebar --- */
+    @media (max-width: 991.98px) {
+      .main-sidebar {
+        transform: translateX(-250px);
+        transition: transform 0.3s ease;
+        position: fixed;
+        z-index: 1050;
+      }
+      .main-sidebar.show {
+        transform: translateX(0);
+      }
+      .content-wrapper {
+        margin-left: 0;
+      }
+      .navbar-toggler {
+        border: none;
+        background: transparent;
+        color: white;
+      }
+    }
+
+
+    /* --- Responsive Table --- */
+    @media (max-width: 768px) {
+      table thead { display: none; }
+      table, table tbody, table tr, table td {
+        display: block;
+        width: 100%;
+      }
+      table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.8);
+      }
+      table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+      }
+      table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        text-align: left;
+        font-weight: bold;
+      }
+    }
+
+    
